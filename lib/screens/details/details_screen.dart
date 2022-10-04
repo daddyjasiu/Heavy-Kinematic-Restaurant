@@ -1,36 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:heavy2022/constants.dart';
 
-import 'components/body.dart';
+import '../../constants.dart';
+import '../../models/Product.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class DetailsScreen extends StatelessWidget {
+  const DetailsScreen({Key? key, required this.product}) : super(key: key);
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
-      body: const Body(),
+      appBar: buildAppBar(context),
+      body: Image.asset("${product.image}"),
     );
   }
 
-  AppBar buildAppBar() {
+  AppBar buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
-
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_rounded),
         color: Colors.grey[800],
-        onPressed: () {},
+        onPressed: () => Navigator.pop(context),
       ),
       actions: <Widget>[
-        IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.search,
-            color: Colors.grey[800],
-          ),
-        ),
         IconButton(
           onPressed: () {},
           icon: Icon(

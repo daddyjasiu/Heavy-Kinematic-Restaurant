@@ -10,17 +10,20 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> {
-  List<String> categories = ["Pizza", "Main courses", "Soups", "Drinks"];
+  List<String> categories = ["Pizza", "Dania główne", "Zupy", "Napoje"];
   int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 25,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: categories.length,
-          itemBuilder: (context, index) => buildCategory(index)
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
+      child: SizedBox(
+        height: 25,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: categories.length,
+            itemBuilder: (context, index) => buildCategory(index)
+        ),
       ),
     );
   }
