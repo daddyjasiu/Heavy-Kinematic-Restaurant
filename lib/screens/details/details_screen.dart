@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 import '../../models/Product.dart';
+import 'components/body.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key, required this.product}) : super(key: key);
@@ -11,8 +12,11 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context),
-      body: Image.asset("${product.image}"),
+      backgroundColor: Colors.blue,
+        appBar: buildAppBar(context),
+      body: Body(
+        product: product,
+      ),
     );
   }
 
