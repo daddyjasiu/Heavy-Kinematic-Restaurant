@@ -39,7 +39,7 @@ List<Product> pizzas = [
 
 List<Product> main_courses = [
   Product(
-    id: 1,
+    id: 5,
     title: "Kotlet schabowy",
     price: 35.0,
     description: dummyText,
@@ -47,7 +47,7 @@ List<Product> main_courses = [
     category: "main_courses",
   ),
   Product(
-    id: 2,
+    id: 6,
     title: "Ryba z frytkami",
     price: 33.0,
     description: dummyText,
@@ -55,7 +55,7 @@ List<Product> main_courses = [
     category: "main_courses",
   ),
   Product(
-    id: 3,
+    id: 7,
     title: "Placek po węgiersku",
     price: 25.0,
     description: dummyText,
@@ -66,7 +66,7 @@ List<Product> main_courses = [
 
 List<Product> soups = [
   Product(
-    id: 1,
+    id: 8,
     title: "Zupa pomidorowa",
     price: 13.5,
     description: dummyText,
@@ -74,7 +74,7 @@ List<Product> soups = [
     category: "soups",
   ),
   Product(
-    id: 2,
+    id: 9,
     title: "Rosół",
     price: 12.0,
     description: dummyText,
@@ -85,7 +85,7 @@ List<Product> soups = [
 
 List<Product> drinks = [
   Product(
-    id: 1,
+    id: 10,
     title: "Kawa",
     price: 7.0,
     description: dummyText,
@@ -93,7 +93,7 @@ List<Product> drinks = [
     category: "drinks",
   ),
   Product(
-    id: 2,
+    id: 11,
     title: "Herbata",
     price: 7.0,
     description: dummyText,
@@ -101,7 +101,7 @@ List<Product> drinks = [
     category: "drinks",
   ),
   Product(
-    id: 2,
+    id: 12,
     title: "Coca-Cola",
     price: 7.0,
     description: dummyText,

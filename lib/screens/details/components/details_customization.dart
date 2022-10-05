@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../constants.dart';
 import '../../../models/Product.dart';
 
+double? totalPrice = 0;
+double? extrasPrice = 0;
+double? pizzaDoughPrice = 0;
+
 class DetailsCustomization extends StatelessWidget {
   const DetailsCustomization({
     Key? key,
@@ -15,6 +19,9 @@ class DetailsCustomization extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    totalPrice = 0;
+    extrasPrice = 0;
+    pizzaDoughPrice = 0;
     return ListView(
       children: <Widget>[
         SizedBox(
@@ -72,9 +79,13 @@ class DetailsCustomization extends StatelessWidget {
                                   ),
                             ),
                           ),
+                          const Spacer(),
                           FloatingActionButton(
-                            onPressed: () {},
-                            child: Icon(Icons.add_shopping_cart_outlined),
+                            onPressed: () {
+                              totalPrice = product.price! + extrasPrice! + pizzaDoughPrice!;
+                              debugPrint("$totalPrice");
+                            },
+                            child: const Icon(Icons.add_shopping_cart_outlined),
                           ),
                         ],
                       ),
@@ -85,7 +96,7 @@ class DetailsCustomization extends StatelessWidget {
                           thickness: 2,
                         ),
                       ),
-                      Customization(product: product),
+                      Customization(product: product, totalPrice: totalPrice),
                     ],
                   ),
                 ),
@@ -100,8 +111,11 @@ class DetailsCustomization extends StatelessWidget {
 
 class Customization extends StatelessWidget {
   final Product product;
+  final double? totalPrice;
 
-  const Customization({Key? key, required this.product}) : super(key: key);
+  const Customization(
+      {Key? key, required this.product, required this.totalPrice})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -122,9 +136,13 @@ class Customization extends StatelessWidget {
                 )
               : Container(),
           product.category == "pizza"
-              ? const PizzaExtrasRadioList()
+              ? PizzaExtrasRadioList(
+                  product: product,
+                )
               : product.category == "main_courses"
-                  ? const MainCoursesExtrasRadioList()
+                  ? MainCoursesExtrasRadioList(
+                      product: product,
+                    )
                   : Container(),
           product.category == "main_courses" &&
                   product.title == "Kotlet schabowy"
@@ -157,7 +175,9 @@ class Customization extends StatelessWidget {
                     )
                   : Container(),
           product.category == "pizza"
-              ? const PizzaDoughRadioList()
+              ? PizzaDoughRadioList(
+                  product: product,
+                )
               : Container(),
         ],
       ),
@@ -228,7 +248,10 @@ enum MainCoursesExtras {
 }
 
 class MainCoursesExtrasRadioList extends StatefulWidget {
-  const MainCoursesExtrasRadioList({Key? key}) : super(key: key);
+  final Product product;
+
+  MainCoursesExtrasRadioList({Key? key, required this.product})
+      : super(key: key);
 
   @override
   State<MainCoursesExtrasRadioList> createState() =>
@@ -250,6 +273,8 @@ class _MainCoursesExtrasRadioListState
           onChanged: (MainCoursesExtras? value) {
             setState(() {
               _extra = value;
+              pizzaDoughPrice = 0.0;
+              extrasPrice = 0.0;
             });
           },
         ),
@@ -263,11 +288,13 @@ class _MainCoursesExtrasRadioListState
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
-          ),          value: MainCoursesExtras.salad_bar,
+          ),
+          value: MainCoursesExtras.salad_bar,
           groupValue: _extra,
           onChanged: (MainCoursesExtras? value) {
             setState(() {
               _extra = value;
+              extrasPrice = 7.0;
             });
           },
         ),
@@ -281,11 +308,13 @@ class _MainCoursesExtrasRadioListState
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
-          ),          value: MainCoursesExtras.extra_sauces,
+          ),
+          value: MainCoursesExtras.extra_sauces,
           groupValue: _extra,
           onChanged: (MainCoursesExtras? value) {
             setState(() {
               _extra = value;
+              extrasPrice =  5.5;
             });
           },
         ),
@@ -297,7 +326,10 @@ class _MainCoursesExtrasRadioListState
 enum PizzaExtras { none, double_cheese, salami, ham, mushrooms, chicken }
 
 class PizzaExtrasRadioList extends StatefulWidget {
-  const PizzaExtrasRadioList({Key? key}) : super(key: key);
+  final Product product;
+
+  const PizzaExtrasRadioList({Key? key, required this.product})
+      : super(key: key);
 
   @override
   State<PizzaExtrasRadioList> createState() => _PizzaExtrasRadioListState();
@@ -317,6 +349,7 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
           onChanged: (PizzaExtras? value) {
             setState(() {
               _extra = value;
+              extrasPrice = 0.0;
             });
           },
         ),
@@ -330,11 +363,13 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
-          ),          value: PizzaExtras.double_cheese,
+          ),
+          value: PizzaExtras.double_cheese,
           groupValue: _extra,
           onChanged: (PizzaExtras? value) {
             setState(() {
               _extra = value;
+              extrasPrice = 2.5;
             });
           },
         ),
@@ -348,11 +383,13 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
-          ),          value: PizzaExtras.salami,
+          ),
+          value: PizzaExtras.salami,
           groupValue: _extra,
           onChanged: (PizzaExtras? value) {
             setState(() {
               _extra = value;
+              extrasPrice = 2.5;
             });
           },
         ),
@@ -366,11 +403,13 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
-          ),          value: PizzaExtras.ham,
+          ),
+          value: PizzaExtras.ham,
           groupValue: _extra,
           onChanged: (PizzaExtras? value) {
             setState(() {
               _extra = value;
+              extrasPrice = 2.5;
             });
           },
         ),
@@ -390,6 +429,7 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
           onChanged: (PizzaExtras? value) {
             setState(() {
               _extra = value;
+              extrasPrice = 2.5;
             });
           },
         ),
@@ -409,6 +449,7 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
           onChanged: (PizzaExtras? value) {
             setState(() {
               _extra = value;
+              extrasPrice = 2.5;
             });
           },
         ),
@@ -420,7 +461,10 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
 enum PizzaDough { none, gluten_free, cheese_filled }
 
 class PizzaDoughRadioList extends StatefulWidget {
-  const PizzaDoughRadioList({Key? key}) : super(key: key);
+  final Product product;
+
+  const PizzaDoughRadioList({Key? key, required this.product})
+      : super(key: key);
 
   @override
   State<PizzaDoughRadioList> createState() => _PizzaDoughRadioListState();
@@ -440,6 +484,7 @@ class _PizzaDoughRadioListState extends State<PizzaDoughRadioList> {
           onChanged: (PizzaDough? value) {
             setState(() {
               _dough = value;
+              pizzaDoughPrice = 0.0;
             });
           },
         ),
@@ -459,6 +504,7 @@ class _PizzaDoughRadioListState extends State<PizzaDoughRadioList> {
           onChanged: (PizzaDough? value) {
             setState(() {
               _dough = value;
+              pizzaDoughPrice = 4.0;
             });
           },
         ),
@@ -480,6 +526,7 @@ class _PizzaDoughRadioListState extends State<PizzaDoughRadioList> {
             onChanged: (PizzaDough? value) {
               setState(() {
                 _dough = value;
+                pizzaDoughPrice = 6.0;
               });
             },
           ),
