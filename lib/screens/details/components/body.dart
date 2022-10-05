@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:heavy2022/screens/details/components/main_courses_details_customization.dart';
+import 'package:heavy2022/screens/details/components/details_customization.dart';
 
 import '../../../models/Product.dart';
-import 'pizza_details_customization.dart';
 
 class Body extends StatelessWidget {
   final Product product;
@@ -22,13 +21,7 @@ class Body extends StatelessWidget {
             image: AssetImage(product.image!),
             fit: BoxFit.fitWidth),
       ),
-      child: selectedIndex == 0
-          ? PizzaDetailsCustomization(size: size, product: product)
-          : selectedIndex == 1
-              ? MainCoursesDetailsCustomization(size: size, product: product)
-              : selectedIndex == 2
-                  ? PizzaDetailsCustomization(size: size, product: product)
-                  : PizzaDetailsCustomization(size: size, product: product),
+      child: DetailsCustomization(size: size, product: product,)
     );
   }
 }

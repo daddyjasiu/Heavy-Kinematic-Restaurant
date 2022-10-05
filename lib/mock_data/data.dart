@@ -9,6 +9,7 @@ List<Product> pizzas = [
     price: 25.0,
     description: dummyText,
     image: "assets/images/pizza/pizza_margherita.png",
+    category: "pizza",
   ),
   Product(
     id: 2,
@@ -16,6 +17,7 @@ List<Product> pizzas = [
     price: 27.0,
     description: dummyText,
     image: "assets/images/pizza/pizza_vegetariana.png",
+    category: "pizza",
   ),
   Product(
     id: 3,
@@ -23,6 +25,7 @@ List<Product> pizzas = [
     price: 31.0,
     description: dummyText,
     image: "assets/images/pizza/pizza_venezia.png",
+    category: "pizza",
   ),
   Product(
     id: 4,
@@ -30,6 +33,7 @@ List<Product> pizzas = [
     price: 30.0,
     description: dummyText,
     image: "assets/images/pizza/pizza_tosca.png",
+    category: "pizza",
   ),
 ];
 
@@ -40,6 +44,7 @@ List<Product> main_courses = [
     price: 35.0,
     description: dummyText,
     image: "assets/images/courses/kotlet_schabowy.png",
+    category: "main_courses",
   ),
   Product(
     id: 2,
@@ -47,6 +52,7 @@ List<Product> main_courses = [
     price: 33.0,
     description: dummyText,
     image: "assets/images/courses/ryba_z_frytkami.jpg",
+    category: "main_courses",
   ),
   Product(
     id: 3,
@@ -54,6 +60,7 @@ List<Product> main_courses = [
     price: 25.0,
     description: dummyText,
     image: "assets/images/courses/placek_po_wegiersku.jpg",
+    category: "main_courses",
   ),
 ];
 
@@ -64,6 +71,7 @@ List<Product> soups = [
     price: 13.5,
     description: dummyText,
     image: "assets/images/soups/pomidorowa.jpg",
+    category: "soups",
   ),
   Product(
     id: 2,
@@ -71,6 +79,7 @@ List<Product> soups = [
     price: 12.0,
     description: dummyText,
     image: "assets/images/soups/rosol.jpg",
+    category: "soups",
   ),
 ];
 
@@ -81,6 +90,7 @@ List<Product> drinks = [
     price: 7.0,
     description: dummyText,
     image: "assets/images/drinks/coffee.jpg",
+    category: "drinks",
   ),
   Product(
     id: 2,
@@ -88,6 +98,7 @@ List<Product> drinks = [
     price: 7.0,
     description: dummyText,
     image: "assets/images/drinks/tea.jpg",
+    category: "drinks",
   ),
   Product(
     id: 2,
@@ -95,6 +106,7 @@ List<Product> drinks = [
     price: 7.0,
     description: dummyText,
     image: "assets/images/drinks/cola_glass.jpg",
+    category: "drinks",
   ),
 ];
 

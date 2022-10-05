@@ -1,5 +1,5 @@
 class Product {
-  final String? image, title, description;
+  final String? image, title, description, category;
   final double? price, id;
 
   Product({
@@ -8,5 +8,6 @@ class Product {
     this.title,
     this.price,
     this.description,
+    this.category,
   });
 }
