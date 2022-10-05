@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../constants.dart';
 import '../../../models/Product.dart';
 
-class PizzaDetailsCustomization extends StatelessWidget {
-  const PizzaDetailsCustomization({
+class MainCoursesDetailsCustomization extends StatelessWidget {
+  const MainCoursesDetailsCustomization({
     Key? key,
     required this.size,
     required this.product,
@@ -35,7 +35,8 @@ class PizzaDetailsCustomization extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: size.width / 3),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: size.width / 3),
                         child: Divider(
                           color: Colors.grey[300],
                           thickness: 2,
@@ -74,7 +75,7 @@ class PizzaDetailsCustomization extends StatelessWidget {
                           thickness: 2,
                         ),
                       ),
-                      const Customization(),
+                      Customization(product: product),
                     ],
                   ),
                 ),
@@ -88,9 +89,9 @@ class PizzaDetailsCustomization extends StatelessWidget {
 }
 
 class Customization extends StatelessWidget {
-  const Customization({
-    Key? key,
-  }) : super(key: key);
+  final Product product;
+
+  const Customization({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -108,95 +109,76 @@ class Customization extends StatelessWidget {
                   ),
             ),
           ),
-          const PizzaExtrasRadioList(),
-          Padding(
-            padding: const EdgeInsets.only(
-                top: kDefaultPadding, left: kDefaultPadding / 2),
-            child: Text(
-              "Modyfikacje ciasta:",
-              style: Theme.of(context).textTheme.headline6?.copyWith(
-                    color: Colors.grey[900],
-                  ),
-            ),
-          ),
-          const PizzaDoughRadioList()
+          const MainCoursesExtrasRadioList(),
+          product.title == "Kotlet schabowy"
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: kDefaultPadding, left: kDefaultPadding / 2),
+                      child: Text(
+                        "Podawany z:",
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                              color: Colors.grey[900],
+                            ),
+                      ),
+                    ),
+                    const PorkChopExtrasRadioList(),
+                  ],
+                )
+              : Container(),
         ],
       ),
     );
   }
 }
 
-enum PizzaExtras { none, double_cheese, salami, ham, mushrooms, chicken }
-
-class PizzaExtrasRadioList extends StatefulWidget {
-  const PizzaExtrasRadioList({Key? key}) : super(key: key);
-
-  @override
-  State<PizzaExtrasRadioList> createState() => _PizzaExtrasRadioListState();
+enum PorkChopExtras {
+  potatoes,
+  fries,
+  rice,
 }
 
-class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
-  PizzaExtras? _extra = PizzaExtras.none;
+class PorkChopExtrasRadioList extends StatefulWidget {
+  const PorkChopExtrasRadioList({Key? key}) : super(key: key);
+
+  @override
+  State<PorkChopExtrasRadioList> createState() =>
+      _PorkChopExtrasRadioListState();
+}
+
+class _PorkChopExtrasRadioListState extends State<PorkChopExtrasRadioList> {
+  PorkChopExtras? _extra = PorkChopExtras.potatoes;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        RadioListTile<PizzaExtras>(
-          title: const Text('Brak'),
-          value: PizzaExtras.none,
+        RadioListTile<PorkChopExtras>(
+          title: const Text('Ziemniakami'),
+          value: PorkChopExtras.potatoes,
           groupValue: _extra,
-          onChanged: (PizzaExtras? value) {
+          onChanged: (PorkChopExtras? value) {
             setState(() {
               _extra = value;
             });
           },
         ),
-        RadioListTile<PizzaExtras>(
-          title: const Text('Podwójny ser'),
-          value: PizzaExtras.double_cheese,
+        RadioListTile<PorkChopExtras>(
+          title: const Text('Frytkami'),
+          value: PorkChopExtras.fries,
           groupValue: _extra,
-          onChanged: (PizzaExtras? value) {
+          onChanged: (PorkChopExtras? value) {
             setState(() {
               _extra = value;
             });
           },
         ),
-        RadioListTile<PizzaExtras>(
-          title: const Text('Salami'),
-          value: PizzaExtras.salami,
+        RadioListTile<PorkChopExtras>(
+          title: const Text('Ryżem'),
+          value: PorkChopExtras.rice,
           groupValue: _extra,
-          onChanged: (PizzaExtras? value) {
-            setState(() {
-              _extra = value;
-            });
-          },
-        ),
-        RadioListTile<PizzaExtras>(
-          title: const Text('Szynka'),
-          value: PizzaExtras.ham,
-          groupValue: _extra,
-          onChanged: (PizzaExtras? value) {
-            setState(() {
-              _extra = value;
-            });
-          },
-        ),
-        RadioListTile<PizzaExtras>(
-          title: const Text('Pieczarki'),
-          value: PizzaExtras.mushrooms,
-          groupValue: _extra,
-          onChanged: (PizzaExtras? value) {
-            setState(() {
-              _extra = value;
-            });
-          },
-        ),
-        RadioListTile<PizzaExtras>(
-          title: const Text('Kurczak'),
-          value: PizzaExtras.chicken,
-          groupValue: _extra,
-          onChanged: (PizzaExtras? value) {
+          onChanged: (PorkChopExtras? value) {
             setState(() {
               _extra = value;
             });
@@ -207,54 +189,57 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
   }
 }
 
-enum PizzaDough { none, gluten_free, cheese_filled }
-
-class PizzaDoughRadioList extends StatefulWidget {
-  const PizzaDoughRadioList({Key? key}) : super(key: key);
-
-  @override
-  State<PizzaDoughRadioList> createState() => _PizzaDoughRadioListState();
+enum MainCoursesExtras {
+  none,
+  salad_bar,
+  extra_sauces,
 }
 
-class _PizzaDoughRadioListState extends State<PizzaDoughRadioList> {
-  PizzaDough? _dough = PizzaDough.none;
+class MainCoursesExtrasRadioList extends StatefulWidget {
+  const MainCoursesExtrasRadioList({Key? key}) : super(key: key);
+
+  @override
+  State<MainCoursesExtrasRadioList> createState() =>
+      _MainCoursesExtrasRadioListState();
+}
+
+class _MainCoursesExtrasRadioListState
+    extends State<MainCoursesExtrasRadioList> {
+  MainCoursesExtras? _extra = MainCoursesExtras.none;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        RadioListTile<PizzaDough>(
-          title: const Text('Klasyczne'),
-          value: PizzaDough.none,
-          groupValue: _dough,
-          onChanged: (PizzaDough? value) {
+        RadioListTile<MainCoursesExtras>(
+          title: const Text('Brak'),
+          value: MainCoursesExtras.none,
+          groupValue: _extra,
+          onChanged: (MainCoursesExtras? value) {
             setState(() {
-              _dough = value;
+              _extra = value;
             });
           },
         ),
-        RadioListTile<PizzaDough>(
-          title: const Text('Bezglutenowe'),
-          value: PizzaDough.gluten_free,
-          groupValue: _dough,
-          onChanged: (PizzaDough? value) {
+        RadioListTile<MainCoursesExtras>(
+          title: const Text('Bar sałatkowy'),
+          value: MainCoursesExtras.salad_bar,
+          groupValue: _extra,
+          onChanged: (MainCoursesExtras? value) {
             setState(() {
-              _dough = value;
+              _extra = value;
             });
           },
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: kDefaultPadding),
-          child: RadioListTile<PizzaDough>(
-            title: const Text('Serowe brzegi'),
-            value: PizzaDough.cheese_filled,
-            groupValue: _dough,
-            onChanged: (PizzaDough? value) {
-              setState(() {
-                _dough = value;
-              });
-            },
-          ),
+        RadioListTile<MainCoursesExtras>(
+          title: const Text('Zestaw sosów'),
+          value: MainCoursesExtras.extra_sauces,
+          groupValue: _extra,
+          onChanged: (MainCoursesExtras? value) {
+            setState(() {
+              _extra = value;
+            });
+          },
         ),
       ],
     );

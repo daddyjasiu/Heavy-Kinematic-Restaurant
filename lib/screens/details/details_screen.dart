@@ -5,9 +5,11 @@ import '../../models/Product.dart';
 import 'components/body.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({Key? key, required this.product}) : super(key: key);
 
   final Product product;
+  final int selectedIndex;
+
+  const DetailsScreen({Key? key, required this.product, required this.selectedIndex}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +17,7 @@ class DetailsScreen extends StatelessWidget {
       backgroundColor: Colors.blue,
         appBar: buildAppBar(context),
       body: Body(
+        selectedIndex: selectedIndex,
         product: product,
       ),
     );

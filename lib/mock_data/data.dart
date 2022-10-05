@@ -6,58 +6,95 @@ List<Product> pizzas = [
   Product(
     id: 1,
     title: "Pizza margherita",
-    price: 25,
+    price: 25.0,
     description: dummyText,
     image: "assets/images/pizza/pizza_margherita.png",
   ),
   Product(
     id: 2,
     title: "Pizza vegetariana",
-    price: 27,
+    price: 27.0,
     description: dummyText,
     image: "assets/images/pizza/pizza_vegetariana.png",
   ),
   Product(
     id: 3,
     title: "Pizza venezia",
-    price: 31,
+    price: 31.0,
     description: dummyText,
     image: "assets/images/pizza/pizza_venezia.png",
   ),
   Product(
     id: 4,
     title: "Pizza tosca",
-    price: 30,
+    price: 30.0,
     description: dummyText,
     image: "assets/images/pizza/pizza_tosca.png",
   ),
+];
+
+List<Product> main_courses = [
   Product(
     id: 1,
-    title: "Pizza margherita",
-    price: 25,
+    title: "Kotlet schabowy",
+    price: 35.0,
     description: dummyText,
-    image: "assets/images/pizza/pizza_margherita.png",
+    image: "assets/images/courses/kotlet_schabowy.png",
   ),
   Product(
     id: 2,
-    title: "Pizza vegetariana",
-    price: 27,
+    title: "Ryba z frytkami",
+    price: 33.0,
     description: dummyText,
-    image: "assets/images/pizza/pizza_vegetariana.png",
+    image: "assets/images/courses/ryba_z_frytkami.jpg",
   ),
   Product(
     id: 3,
-    title: "Pizza venezia",
-    price: 31,
+    title: "Placek po węgiersku",
+    price: 25.0,
     description: dummyText,
-    image: "assets/images/pizza/pizza_venezia.png",
+    image: "assets/images/courses/placek_po_wegiersku.jpg",
+  ),
+];
+
+List<Product> soups = [
+  Product(
+    id: 1,
+    title: "Zupa pomidorowa",
+    price: 13.5,
+    description: dummyText,
+    image: "assets/images/soups/pomidorowa.jpg",
   ),
   Product(
-    id: 4,
-    title: "Pizza tosca",
-    price: 30,
+    id: 2,
+    title: "Rosół",
+    price: 12.0,
     description: dummyText,
-    image: "assets/images/pizza/pizza_tosca.png",
+    image: "assets/images/soups/rosol.jpg",
+  ),
+];
+
+List<Product> drinks = [
+  Product(
+    id: 1,
+    title: "Kawa",
+    price: 7.0,
+    description: dummyText,
+    image: "assets/images/drinks/coffee.jpg",
+  ),
+  Product(
+    id: 2,
+    title: "Herbata",
+    price: 7.0,
+    description: dummyText,
+    image: "assets/images/drinks/tea.jpg",
+  ),
+  Product(
+    id: 2,
+    title: "Coca-Cola",
+    price: 7.0,
+    description: dummyText,
+    image: "assets/images/drinks/cola_glass.jpg",
   ),
 ];
 

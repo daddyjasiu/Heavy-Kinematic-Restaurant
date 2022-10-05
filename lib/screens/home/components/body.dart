@@ -7,7 +7,9 @@ import 'categories.dart';
 import 'item_card.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  Body({Key? key}) : super(key: key);
+
+  int _categoryIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -27,29 +29,10 @@ class Body extends StatelessWidget {
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
         ),
-        const Categories(),
-        Expanded(
-            child: GridView.builder(
-          itemCount: pizzas.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.90,
-            mainAxisSpacing: kDefaultPadding / 2,
-            crossAxisSpacing: 0,
-          ),
-          itemBuilder: (context, index) => Container(
-            alignment: Alignment.center,
-            child: ItemCard(
-              product: pizzas[index],
-              press: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailsScreen(product: pizzas[index]),
-                ),
-              ),
-            ),
-          ),
-        )),
+        RenderCategoriesAndFoods(
+          categoryIndex: _categoryIndex,
+        ),
+        //RenderFoods(categoryIndex: _categoryIndex),
       ],
     );
   }

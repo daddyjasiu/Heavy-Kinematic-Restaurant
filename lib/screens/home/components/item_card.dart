@@ -23,7 +23,7 @@ class ItemCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20), // Image border
             child: SizedBox.fromSize(
-              size: const Size.fromRadius(85), // Image radius
+              size: const Size.fromRadius(65), // Image radius
               child: Image.asset(product.image!),
             ),
           ),

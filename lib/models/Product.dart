@@ -1,6 +1,6 @@
 class Product {
   final String? image, title, description;
-  final int? price, id;
+  final double? price, id;
 
   Product({
     this.id,
