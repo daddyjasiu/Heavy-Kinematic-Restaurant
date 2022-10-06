@@ -81,7 +81,7 @@ class DetailsCustomization extends StatelessWidget {
                                 left: kDefaultPadding / 2,
                                 bottom: kDefaultPadding),
                             child: Text(
-                              "${product.price!} zł",
+                              "${product.price!.toInt()} zł",
                               style: Theme.of(context)
                                   .textTheme
                                   .headline5
@@ -96,12 +96,12 @@ class DetailsCustomization extends StatelessWidget {
                               String extras;
 
                               if (product.category == "pizza") {
-                                extras = "$pizzaExtras, $pizzaDough";
+                                extras = "• $pizzaExtras\n• Ciasto ${pizzaDough?.toLowerCase()}";
                               } else if (product.category == "main_courses" &&
                                   product.title == "Kotlet schabowy") {
-                                extras = "$mainCourseExtras, $porkChopExtras";
+                                extras = "• $mainCourseExtras\n• $porkChopExtras";
                               } else if (product.category == "main_courses") {
-                                extras = "$mainCourseExtras";
+                                extras = "• $mainCourseExtras";
                               } else {
                                 extras = "N/A";
                               }
@@ -113,7 +113,7 @@ class DetailsCustomization extends StatelessWidget {
                               CartProduct cartProduct = CartProduct(
                                 image: product.image,
                                 title: product.title,
-                                price: product.price,
+                                price: totalPrice,
                                 description: product.description,
                                 category: product.category,
                                 extras: extras,
@@ -327,7 +327,7 @@ class _MainCoursesExtrasRadioListState
               Text('Bar sałatkowy'),
               Spacer(),
               Text(
-                "+ 7zł",
+                "+ 7 zł",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
@@ -348,7 +348,7 @@ class _MainCoursesExtrasRadioListState
               Text('Zestaw sosów'),
               Spacer(),
               Text(
-                "+ 5.5zł",
+                "+ 5.5 zł",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
@@ -405,7 +405,7 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
               Text('Podwójny ser'),
               Spacer(),
               Text(
-                "+ 2.5zł",
+                "+ 2.50 zł",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
@@ -426,7 +426,7 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
               Text('Salami'),
               Spacer(),
               Text(
-                "+ 2.5zł",
+                "+ 2.50 zł",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
@@ -447,7 +447,7 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
               Text('Szynka'),
               Spacer(),
               Text(
-                "+ 2.5zł",
+                "+ 2.50 zł",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
@@ -468,7 +468,7 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
               Text('Pieczarki'),
               Spacer(),
               Text(
-                "+ 2.5zł",
+                "+ 2.50 zł",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
@@ -489,7 +489,7 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
               Text('Kurczak'),
               Spacer(),
               Text(
-                "+ 2.5zł",
+                "+ 2.50 zł",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
@@ -546,7 +546,7 @@ class _PizzaDoughRadioListState extends State<PizzaDoughRadioList> {
               Text('Bezglutenowe'),
               Spacer(),
               Text(
-                "+ 4zł",
+                "+ 4 zł",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
@@ -569,7 +569,7 @@ class _PizzaDoughRadioListState extends State<PizzaDoughRadioList> {
                 Text('Serowe brzegi'),
                 Spacer(),
                 Text(
-                  "+ 6zł",
+                  "+ 6 zł",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],

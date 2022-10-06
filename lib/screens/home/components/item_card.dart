@@ -35,7 +35,7 @@ class ItemCard extends StatelessWidget {
             ),
           ),
           Text(
-            "${product.price!} zł",
+            "${product.price!.toInt()} zł",
             style: const TextStyle(fontWeight: FontWeight.bold),
           )
         ],

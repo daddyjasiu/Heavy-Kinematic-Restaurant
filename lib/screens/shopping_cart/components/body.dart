@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:heavy2022/constants.dart';
 
 import '../../../database/cart_db.dart';
 import '../../../models/CartProduct.dart';
@@ -38,7 +39,7 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Center(
+        Expanded(
           child: isLoading
               ? const CircularProgressIndicator()
               : cartProducts.isEmpty
@@ -53,22 +54,52 @@ class _BodyState extends State<Body> {
   }
 
   Widget buildNotes() => ListView.builder(
-        scrollDirection: Axis.vertical,
         shrinkWrap: true,
         padding: const EdgeInsets.all(8),
         itemCount: cartProducts.length,
         itemBuilder: (context, index) {
           final cartProduct = cartProducts[index];
 
-          return GestureDetector(
-            onTap: () async {
-              // await Navigator.of(context).push(MaterialPageRoute(
-              //   builder: (context) => NoteDetailPage(noteId: note.id!),
-              // ));
-              //
-              // refreshCart();
-            },
-            child: Text("${cartProduct.title}"),
+          return Card(
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ListTile(
+                  leading: Image.asset("${cartProduct.image}"),
+                  title: Text("${cartProduct.title}"),
+                  subtitle: Text(
+                    '${cartProduct.price} zł',
+                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: kDefaultPadding/2, horizontal: kDefaultPadding),
+                  child: Text(
+                    'Dodatki:',
+                    style: TextStyle(color: Colors.black.withOpacity(0.6), fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                  child: Text(
+                    '${cartProduct.extras}',
+                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                  ),
+                ),
+                ButtonBar(
+                  alignment: MainAxisAlignment.start,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        // Perform some action
+                      },
+                      child: const Text('ACTION 1'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           );
         },
       );
