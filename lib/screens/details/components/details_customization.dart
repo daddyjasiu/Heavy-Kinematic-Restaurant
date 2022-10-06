@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:heavy2022/database/cart_db.dart';
+import 'package:heavy2022/models/CartProduct.dart';
 
 import '../../../constants.dart';
 import '../../../models/Product.dart';
@@ -6,6 +8,10 @@ import '../../../models/Product.dart';
 double? totalPrice = 0;
 double? extrasPrice = 0;
 double? pizzaDoughPrice = 0;
+String? pizzaExtras;
+String? pizzaDough;
+String? mainCourseExtras;
+String? porkChopExtras;
 
 class DetailsCustomization extends StatelessWidget {
   const DetailsCustomization({
@@ -22,6 +28,11 @@ class DetailsCustomization extends StatelessWidget {
     totalPrice = 0;
     extrasPrice = 0;
     pizzaDoughPrice = 0;
+    pizzaExtras = "Brak";
+    pizzaDough = "Klasyczne";
+    mainCourseExtras = "Brak";
+    porkChopExtras = "Ziemniaki";
+
     return ListView(
       children: <Widget>[
         SizedBox(
@@ -82,8 +93,36 @@ class DetailsCustomization extends StatelessWidget {
                           const Spacer(),
                           FloatingActionButton(
                             onPressed: () {
-                              totalPrice = product.price! + extrasPrice! + pizzaDoughPrice!;
+                              String extras;
+
+                              if (product.category == "pizza") {
+                                extras = "$pizzaExtras, $pizzaDough";
+                              } else if (product.category == "main_courses" &&
+                                  product.title == "Kotlet schabowy") {
+                                extras = "$mainCourseExtras, $porkChopExtras";
+                              } else if (product.category == "main_courses") {
+                                extras = "$mainCourseExtras";
+                              } else {
+                                extras = "N/A";
+                              }
+
+                              totalPrice = product.price! +
+                                  extrasPrice! +
+                                  pizzaDoughPrice!;
+
+                              CartProduct cartProduct = CartProduct(
+                                image: product.image,
+                                title: product.title,
+                                price: product.price,
+                                description: product.description,
+                                category: product.category,
+                                extras: extras,
+                              );
+
+                              CartDatabase.instance.create(cartProduct);
+
                               debugPrint("$totalPrice");
+                              debugPrint("${cartProduct.extras}");
                             },
                             child: const Icon(Icons.add_shopping_cart_outlined),
                           ),
@@ -213,6 +252,7 @@ class _PorkChopExtrasRadioListState extends State<PorkChopExtrasRadioList> {
           onChanged: (PorkChopExtras? value) {
             setState(() {
               _extra = value;
+              porkChopExtras = "Ziemniaki";
             });
           },
         ),
@@ -223,6 +263,7 @@ class _PorkChopExtrasRadioListState extends State<PorkChopExtrasRadioList> {
           onChanged: (PorkChopExtras? value) {
             setState(() {
               _extra = value;
+              porkChopExtras = "Frytki";
             });
           },
         ),
@@ -233,6 +274,7 @@ class _PorkChopExtrasRadioListState extends State<PorkChopExtrasRadioList> {
           onChanged: (PorkChopExtras? value) {
             setState(() {
               _extra = value;
+              porkChopExtras = "Ryż";
             });
           },
         ),
@@ -275,6 +317,7 @@ class _MainCoursesExtrasRadioListState
               _extra = value;
               pizzaDoughPrice = 0.0;
               extrasPrice = 0.0;
+              mainCourseExtras = "Brak";
             });
           },
         ),
@@ -295,6 +338,7 @@ class _MainCoursesExtrasRadioListState
             setState(() {
               _extra = value;
               extrasPrice = 7.0;
+              mainCourseExtras = "Bar sałatkowy";
             });
           },
         ),
@@ -314,7 +358,8 @@ class _MainCoursesExtrasRadioListState
           onChanged: (MainCoursesExtras? value) {
             setState(() {
               _extra = value;
-              extrasPrice =  5.5;
+              extrasPrice = 5.5;
+              mainCourseExtras = "Zestaw sosów";
             });
           },
         ),
@@ -350,6 +395,7 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
             setState(() {
               _extra = value;
               extrasPrice = 0.0;
+              pizzaExtras = "Brak";
             });
           },
         ),
@@ -370,6 +416,7 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
             setState(() {
               _extra = value;
               extrasPrice = 2.5;
+              pizzaExtras = "Podwójny ser";
             });
           },
         ),
@@ -390,6 +437,7 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
             setState(() {
               _extra = value;
               extrasPrice = 2.5;
+              pizzaExtras = "Salami";
             });
           },
         ),
@@ -410,6 +458,7 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
             setState(() {
               _extra = value;
               extrasPrice = 2.5;
+              pizzaExtras = "Szynka";
             });
           },
         ),
@@ -430,6 +479,7 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
             setState(() {
               _extra = value;
               extrasPrice = 2.5;
+              pizzaExtras = "Pieczarki";
             });
           },
         ),
@@ -450,6 +500,7 @@ class _PizzaExtrasRadioListState extends State<PizzaExtrasRadioList> {
             setState(() {
               _extra = value;
               extrasPrice = 2.5;
+              pizzaExtras = "Kurczak";
             });
           },
         ),
@@ -485,6 +536,7 @@ class _PizzaDoughRadioListState extends State<PizzaDoughRadioList> {
             setState(() {
               _dough = value;
               pizzaDoughPrice = 0.0;
+              pizzaDough = "Klasyczne";
             });
           },
         ),
@@ -505,6 +557,7 @@ class _PizzaDoughRadioListState extends State<PizzaDoughRadioList> {
             setState(() {
               _dough = value;
               pizzaDoughPrice = 4.0;
+              pizzaDough = "Bezglutenowe";
             });
           },
         ),
@@ -527,6 +580,7 @@ class _PizzaDoughRadioListState extends State<PizzaDoughRadioList> {
               setState(() {
                 _dough = value;
                 pizzaDoughPrice = 6.0;
+                pizzaDough = "Serowe brzegi";
               });
             },
           ),

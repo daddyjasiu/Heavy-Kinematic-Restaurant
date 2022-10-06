@@ -54,9 +54,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/screens/details/components/details_customization.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/details/components/details_customization.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/screens/home/components/body.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/home/components/body.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/screens/home/components/item_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/home/components/item_card.dart" afterDir="false" />
+      <change beforePath="lib/screens/details/components/details_customization.dart" beforeDir="false" afterPath="lib/screens/details/components/details_customization.dart" afterDir="false" />
+      <change beforePath="lib/screens/home/components/body.dart" beforeDir="false" afterPath="lib/screens/home/components/body.dart" afterDir="false" />
+      <change beforePath="lib/screens/home/components/item_card.dart" beforeDir="false" afterPath="lib/screens/home/components/item_card.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

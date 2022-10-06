@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 import '../../models/Product.dart';
+import '../shopping_cart/shopping_cart_screen.dart';
 import 'components/body.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -33,7 +34,13 @@ class DetailsScreen extends StatelessWidget {
       ),
       actions: <Widget>[
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ShoppingCartScreen(),
+            ),
+          );},
           icon: Icon(
             Icons.shopping_cart,
             color: Colors.grey[800],
