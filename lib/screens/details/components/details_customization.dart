@@ -29,7 +29,7 @@ class DetailsCustomization extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(top: size.height * 0.45),
+                margin: EdgeInsets.only(top: size.height * 0.40),
                 decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(

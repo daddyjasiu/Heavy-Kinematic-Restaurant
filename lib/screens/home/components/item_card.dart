@@ -28,10 +28,10 @@ class ItemCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: kDefaultPadding/10),
+            padding: const EdgeInsets.symmetric(vertical: kDefaultPadding/4),
             child: Text(
               product.title!,
-              style: const TextStyle(color: kTextLightColor),
+              style: TextStyle(color: Colors.grey[600]),
             ),
           ),
           Text(
