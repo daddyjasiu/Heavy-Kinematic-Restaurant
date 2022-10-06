@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:heavy2022/constants.dart';
+import 'package:heavy2022/screens/order_history/order_history_screen.dart';
 
 import '../shopping_cart/shopping_cart_screen.dart';
 import 'components/body.dart';
@@ -27,7 +28,14 @@ class HomeScreen extends StatelessWidget {
       ),
       actions: <Widget>[
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const OrderHistoryScreen(),
+              ),
+            );
+          },
           icon: Icon(
             Icons.history,
             color: Colors.grey[800],
@@ -43,7 +51,7 @@ class HomeScreen extends StatelessWidget {
             );
           },
           icon: Icon(
-            Icons.shopping_cart,
+            Icons.shopping_cart_outlined,
             color: Colors.grey[800],
           ),
         ),

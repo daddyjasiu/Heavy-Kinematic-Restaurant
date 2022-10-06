@@ -42,7 +42,7 @@ class DetailsScreen extends StatelessWidget {
             ),
           );},
           icon: Icon(
-            Icons.shopping_cart,
+            Icons.shopping_cart_outlined,
             color: Colors.grey[800],
           ),
         ),

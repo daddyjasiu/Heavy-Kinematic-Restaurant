@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heavy2022/database/cart_db.dart';
+import 'package:heavy2022/database/db.dart';
 import 'package:heavy2022/models/CartProduct.dart';
 
 import '../../../constants.dart';
@@ -96,10 +96,12 @@ class DetailsCustomization extends StatelessWidget {
                               String extras;
 
                               if (product.category == "pizza") {
-                                extras = "• $pizzaExtras\n• Ciasto ${pizzaDough?.toLowerCase()}";
+                                extras =
+                                    "• $pizzaExtras\n• Ciasto ${pizzaDough?.toLowerCase()}";
                               } else if (product.category == "main_courses" &&
                                   product.title == "Kotlet schabowy") {
-                                extras = "• $mainCourseExtras\n• $porkChopExtras";
+                                extras =
+                                    "• $mainCourseExtras\n• $porkChopExtras";
                               } else if (product.category == "main_courses") {
                                 extras = "• $mainCourseExtras";
                               } else {
@@ -119,10 +121,12 @@ class DetailsCustomization extends StatelessWidget {
                                 extras: extras,
                               );
 
-                              CartDatabase.instance.create(cartProduct);
+                              SQFLiteDB.instance.createCartProduct(cartProduct);
 
-                              debugPrint("$totalPrice");
-                              debugPrint("${cartProduct.extras}");
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text(
+                                          "Produkt dodany do koszyka.")));
                             },
                             child: const Icon(Icons.add_shopping_cart_outlined),
                           ),

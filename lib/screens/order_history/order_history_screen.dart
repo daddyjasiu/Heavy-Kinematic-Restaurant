@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../../constants.dart';
 import 'components/body.dart';
 
-class ShoppingCartScreen extends StatefulWidget {
-  const ShoppingCartScreen({Key? key}) : super(key: key);
+class OrderHistoryScreen extends StatefulWidget {
+  const OrderHistoryScreen({Key? key}) : super(key: key);
 
   @override
-  State<ShoppingCartScreen> createState() => _ShoppingCartScreenState();
+  State<OrderHistoryScreen> createState() => _OrderHistoryScreenState();
 }
 
-class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
+class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
