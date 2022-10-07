@@ -9,6 +9,10 @@ Finally, upon placing an order, an email is sent to the ordering user with their
 
 User can then check out their recent orders in orders' history.
 
+To test emails sending you can create a temporary email [HERE](https://temp-mail.org/en/) and then input it in app settings.
+
+In-app screenshots:
+
 <p align="center">
   <img src="https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/main_menu.png"/>
   <img src="https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/details_1.png"/>
