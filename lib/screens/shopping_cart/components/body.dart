@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:heavy2022/constants.dart';
 import 'package:heavy2022/models/OrderHistory.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../database/db.dart';
 import '../../../models/CartProduct.dart';
@@ -16,10 +20,22 @@ class _BodyState extends State<Body> {
   late List<CartProduct> cartProducts;
   bool isLoading = false;
 
+  TextEditingController orderConcerns = TextEditingController();
+
+  late String? userName;
+  late String? userEmail;
+
+  Future<void> getSharedPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    userName = prefs.getString("user_name");
+    userEmail = prefs.getString("user_email");
+  }
+
   @override
   void initState() {
     super.initState();
     refreshCart();
+    getSharedPrefs();
   }
 
   @override
@@ -35,6 +51,45 @@ class _BodyState extends State<Body> {
         (await SQFLiteDB.instance.readCartProducts()).reversed.toList();
 
     setState(() => isLoading = false);
+  }
+
+  Future sendEmail({
+    required String receiverName,
+    required String receiverEmail,
+    required String senderEmail,
+    required String emailSubject,
+    required String order,
+    required String concerns,
+    required String totalPrice,
+  }) async {
+    final serviceId = 'service_afcv3w9';
+    final templateId = 'template_gndlqi8';
+    final userId = '6lX92xHDoWMp6poEN';
+
+    final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
+    final response = await http.post(
+      url,
+      headers: {
+        'origin': 'http://localhost',
+        'Content-Type': 'application/json',
+      },
+      body: json.encode({
+        'service_id': serviceId,
+        'template_id': templateId,
+        'user_id': userId,
+        'template_params': {
+          'receiver_name': receiverName,
+          'receiver_email': receiverEmail,
+          'sender_email': senderEmail,
+          'email_subject': emailSubject,
+          'order': order,
+          'concerns': concerns,
+          'total_price': totalPrice,
+        },
+      }),
+    );
+
+    print(response.body);
   }
 
   @override
@@ -193,11 +248,13 @@ class _BodyState extends State<Body> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
                         vertical: kDefaultPadding / 4,
                         horizontal: kDefaultPadding),
-                    child: TextField(),
+                    child: TextField(
+                      controller: orderConcerns,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -205,25 +262,53 @@ class _BodyState extends State<Body> {
                         horizontal: kDefaultPadding / 2),
                     child: ElevatedButton(
                       onPressed: () {
-                        SQFLiteDB.instance.deleteAllCartProducts();
+                        if (userName != null && userEmail != null) {
+                          SQFLiteDB.instance.deleteAllCartProducts();
 
-                        for (var element in cartProducts) {
-                          SQFLiteDB.instance.createOrderHistory(OrderHistory(
-                            id: element.id,
-                            image: element.image,
-                            title: element.title,
-                            price: element.price,
-                            description: element.description,
-                            category: element.category,
-                            extras: element.extras,
-                          ));
+                          for (var element in cartProducts) {
+                            SQFLiteDB.instance.createOrderHistory(OrderHistory(
+                              id: element.id,
+                              image: element.image,
+                              title: element.title,
+                              price: element.price,
+                              description: element.description,
+                              category: element.category,
+                              extras: element.extras,
+                            ));
+                          }
+
+                          refreshCart();
+
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              content: Text(
+                                  "Zamówienie złożone!\n\nSzczegóły zostały wysłane na adres mailowy.")));
+
+                          String order = '';
+                          int orderNum = 1;
+                          for (var element in cartProducts) {
+                            order += '''
+                            ${orderNum++}.<br/>
+                            ${element.title}<br/>
+                            Cena: ${element.price}<br/>
+                            Dodatki: ${element.extras}<br/><br/>
+                        ''';
+                          }
+
+                          sendEmail(
+                            receiverName: "$userName",
+                            receiverEmail: "$userEmail",
+                            senderEmail: "heavykinematicrestaurant@noreply.com",
+                            emailSubject:
+                                "Your Heavy Kinematic Restaurant order",
+                            order: order,
+                            concerns: orderConcerns.text,
+                            totalPrice: "${totalPrice.toString()} zł",
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              content: Text(
+                                  "Uzupełnij swoje dane w ustawieniach na ekranie głównym.")));
                         }
-
-                        refreshCart();
-
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                            content: Text(
-                                "Zamówienie złożone!\n\nSzczegóły zostały wysłane na adres mailowy.")));
                       },
                       style: ButtonStyle(
                         backgroundColor:
@@ -266,7 +351,6 @@ class _BodyState extends State<Body> {
               ),
             ),
           );
-          ;
         }
       },
     );

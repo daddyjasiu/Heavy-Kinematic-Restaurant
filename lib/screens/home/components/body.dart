@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:heavy2022/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'categories.dart';
 
@@ -22,8 +23,10 @@ class Body extends StatelessWidget {
                   top: kDefaultPadding / 1.2),
               child: Text(
                 "Heavy Kinematic Restaurant",
-                style: Theme.of(context).textTheme.headline5?.copyWith(
-                    fontWeight: FontWeight.bold, color: kTextColor),
+                style: Theme.of(context)
+                    .textTheme
+                    .headline5
+                    ?.copyWith(fontWeight: FontWeight.bold, color: kTextColor),
               ),
             ),
             const Padding(
