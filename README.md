@@ -9,6 +9,8 @@ Finally, upon placing an order, an email is sent to the ordering user with their
 
 User can then check out their recent orders in orders' history.
 
+<p align="center">
+
 ![alt text](https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/main_menu.png)
 ![alt text](https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/email_data.png)
 ![alt text](https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/details_1.png)
@@ -16,3 +18,5 @@ User can then check out their recent orders in orders' history.
 ![alt text](https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/cart.png)
 ![alt text](https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/history.png)
 ![alt text](https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/mail.png)
+  
+</p>
