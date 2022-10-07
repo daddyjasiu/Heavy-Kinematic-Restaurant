@@ -11,10 +11,9 @@ User can then check out their recent orders in orders' history.
 
 <p align="center">
   <img src="https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/main_menu.png"/>
-  ![alt text](https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/email_data.png)
-  ![alt text](https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/details_1.png)
-  ![alt text](https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/details_2.png)
-  ![alt text](https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/cart.png)
-  ![alt text](https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/history.png)
-  ![alt text](https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/mail.png)
+  <img src="https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/details_1.png"/>
+  <img src="https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/details_2.png"/>
+  <img src="https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/cart.png"/>
+  <img src="https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots//history.png"/>
+  <img src="https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/mail.png"/>
 </p>
