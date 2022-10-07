@@ -299,7 +299,7 @@ class _BodyState extends State<Body> {
                             receiverEmail: "$userEmail",
                             senderEmail: "heavykinematicrestaurant@noreply.com",
                             emailSubject:
-                                "Your Heavy Kinematic Restaurant order",
+                                "Twoje zamówienie w Heavy Kinematic Restaurant",
                             order: order,
                             concerns: orderConcerns.text,
                             totalPrice: "${totalPrice.toString()} zł",
