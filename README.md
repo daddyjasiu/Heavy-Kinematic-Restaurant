@@ -9,7 +9,7 @@ Finally, upon placing an order, an email is sent to the ordering user with their
 
 User can then check out their recent orders in orders' history.
 
-![alt text]([https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/main_menu.png])
+![alt text](https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/main_menu.png)
 
 ![alt text]([http://url/to/img.png](https://github.com/daddyjasiu/Heavy-Kinematic-Restaurant/blob/main/screenshots/email_data.png))
 
