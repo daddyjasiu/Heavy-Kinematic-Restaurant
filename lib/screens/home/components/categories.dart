@@ -95,29 +95,27 @@ class RenderFoods extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: GridView.builder(
-        itemCount: products.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: MediaQuery.of(context).size.width /
-              (MediaQuery.of(context).size.height / 2),
-          mainAxisSpacing: 10.0,
-          crossAxisSpacing: 10.0,
-        ),
-        itemBuilder: (context, index) => Container(
-          alignment: Alignment.center,
-          child: ItemCard(
-            product: products[index],
-            press: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DetailsScreen(
-                  selectedIndex: selectedIndex,
-                  product: products[index],
+      child: GridView.count(
+        crossAxisCount: 2,
+        children: List.generate(
+          products.length,
+          (index) {
+            return Container(
+              alignment: Alignment.center,
+              child: ItemCard(
+                product: products[index],
+                press: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailsScreen(
+                      selectedIndex: selectedIndex,
+                      product: products[index],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       ),
     );

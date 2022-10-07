@@ -29,7 +29,8 @@ class _BodyState extends State<Body> {
   Future refreshHistory() async {
     setState(() => isLoading = true);
 
-    orderHistoryProducts = (await SQFLiteDB.instance.readOrderHistory()).reversed.toList();
+    orderHistoryProducts =
+        (await SQFLiteDB.instance.readOrderHistory()).reversed.toList();
 
     setState(() => isLoading = false);
   }
@@ -42,49 +43,49 @@ class _BodyState extends State<Body> {
           child: isLoading
               ? const CircularProgressIndicator()
               : orderHistoryProducts.isEmpty
-              ? Padding(
-              padding: const EdgeInsets.symmetric(
-                  vertical: kDefaultPadding,
-                  horizontal: kDefaultPadding),
-              child: Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20.0),
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(
-                          vertical: kDefaultPadding / 2,
-                          horizontal: kDefaultPadding / 2),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        color: Colors.white,
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 2.0,
-                            spreadRadius: 0.0,
-                            offset: Offset(2.0,
-                                2.0), // shadow direction: bottom right
-                          )
-                        ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: kDefaultPadding,
-                            horizontal: kDefaultPadding / 4),
-                        child: Text(
-                          'Tutaj pojawią się złożone zamówienia.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.grey[900],
-                            fontSize: 20,
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: kDefaultPadding,
+                          horizontal: kDefaultPadding),
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                  vertical: kDefaultPadding / 2,
+                                  horizontal: kDefaultPadding / 2),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: Colors.white,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black12,
+                                    blurRadius: 2.0,
+                                    spreadRadius: 0.0,
+                                    offset: Offset(2.0,
+                                        2.0), // shadow direction: bottom right
+                                  )
+                                ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: kDefaultPadding,
+                                    horizontal: kDefaultPadding / 4),
+                                child: Text(
+                                  'Tutaj pojawią się złożone zamówienia.',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.grey[900],
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ))
-              : buildOrderHistory(),
+                        ],
+                      ))
+                  : buildOrderHistory(),
         ),
       ],
     );
@@ -97,7 +98,7 @@ class _BodyState extends State<Body> {
       itemCount: orderHistoryProducts.length + 1,
       itemBuilder: (context, index) {
         if (index != 0) {
-          final orderHistory = orderHistoryProducts[index-1];
+          final orderHistory = orderHistoryProducts[index - 1];
 
           return ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
@@ -138,7 +139,7 @@ class _BodyState extends State<Body> {
                         Text(
                           '${orderHistory.extras}',
                           style:
-                          TextStyle(color: Colors.black.withOpacity(0.6)),
+                              TextStyle(color: Colors.black.withOpacity(0.6)),
                         ),
                       ],
                     ),
@@ -148,7 +149,6 @@ class _BodyState extends State<Body> {
             ),
           );
         } else {
-
           return ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
             child: Card(
@@ -172,7 +172,7 @@ class _BodyState extends State<Body> {
                       },
                       style: ButtonStyle(
                         backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.blue[400]!),
+                            MaterialStateProperty.all<Color>(Colors.blue[400]!),
                       ),
                       child: Row(
                         children: [

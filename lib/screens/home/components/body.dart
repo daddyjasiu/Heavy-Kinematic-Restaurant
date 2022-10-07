@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:heavy2022/constants.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'categories.dart';
 
 class Body extends StatelessWidget {
   Body({Key? key}) : super(key: key);
 
-  int _categoryIndex = 0;
+  final int _categoryIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +14,7 @@ class Body extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.only(
@@ -26,7 +26,7 @@ class Body extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .headline5
-                    ?.copyWith(fontWeight: FontWeight.bold, color: kTextColor),
+                    ?.copyWith(fontWeight: FontWeight.bold, color: Colors.grey[900]),
               ),
             ),
             const Padding(
@@ -41,7 +41,6 @@ class Body extends StatelessWidget {
         RenderCategoriesAndFoods(
           categoryIndex: _categoryIndex,
         ),
-        //RenderFoods(categoryIndex: _categoryIndex),
       ],
     );
   }

@@ -22,6 +22,7 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
+      title: Text("Historia zamówień", style: TextStyle(color: Colors.grey[800]),),
       backgroundColor: Colors.white,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_rounded),

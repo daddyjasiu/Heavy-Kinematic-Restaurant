@@ -22,6 +22,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
+      title: Text("Koszyk", style: TextStyle(color: Colors.grey[800]),),
       backgroundColor: Colors.white,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_rounded),

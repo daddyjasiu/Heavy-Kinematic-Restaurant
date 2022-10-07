@@ -17,28 +17,39 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: press,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20), // Image border
-            child: SizedBox.fromSize(
-              size: const Size.fromRadius(65), // Image radius
-              child: Image.asset(product.image!),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(30.0),
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(kDefaultPadding / 2),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch, //add this
+              children: <Widget>[
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10.0),
+                    child: Image.asset(
+                      product.image!,
+                      fit: BoxFit.cover, // add this
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: kDefaultPadding / 4),
+                  child: Text(
+                    product.title!,
+                    style: TextStyle(color: Colors.grey[600]),
+                  ),
+                ),
+                Text(
+                  "${product.price!.toInt()} zł",
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                )
+              ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: kDefaultPadding/4),
-            child: Text(
-              product.title!,
-              style: TextStyle(color: Colors.grey[600]),
-            ),
-          ),
-          Text(
-            "${product.price!.toInt()} zł",
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          )
-        ],
+        ),
       ),
     );
   }

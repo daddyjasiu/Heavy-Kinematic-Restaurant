@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: buildAppBar(context),
       body: Body(),
     );
@@ -19,6 +20,7 @@ class HomeScreen extends StatelessWidget {
 
   AppBar buildAppBar(context) {
     return AppBar(
+      title: Text("Menu", style: TextStyle(color: Colors.grey[800]),),
       backgroundColor: Colors.white,
       leading: IconButton(
         onPressed: () {
