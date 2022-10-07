@@ -2,7 +2,7 @@
     package="com.jansk.heavy2022">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="heavy2022"
+        android:label="Heavy Kinematic Restaurant"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
